@@ -30,8 +30,7 @@ public class Test extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//	JSP読み込み	
-		String view = "/test/test.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/test/test.jsp");
 		
 		dispatcher.forward(request, response);
 	}

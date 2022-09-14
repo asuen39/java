@@ -30,8 +30,7 @@ public class Confirm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//	JSP読み込み	
-		String view = "/edit/confirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit/confirm.jsp");
 		
 		dispatcher.forward(request, response);
 	}

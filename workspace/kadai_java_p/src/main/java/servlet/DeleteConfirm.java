@@ -29,9 +29,8 @@ public class DeleteConfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//	JSP読み込み	
-		String view = "/delete_confirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		//	JSP読み込み
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/delete_confirm.jsp");
 		
 		dispatcher.forward(request, response);
 	}

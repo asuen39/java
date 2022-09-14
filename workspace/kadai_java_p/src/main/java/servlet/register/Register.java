@@ -30,8 +30,7 @@ public class Register extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//	JSP読み込み	
-		String view = "/register/register.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/register.jsp");
 		
 		dispatcher.forward(request, response);
 	}

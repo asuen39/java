@@ -30,8 +30,7 @@ public class Edit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//	JSP読み込み	
-		String view = "/edit/edit.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit/edit.jsp");
 		
 		dispatcher.forward(request, response);
 	}

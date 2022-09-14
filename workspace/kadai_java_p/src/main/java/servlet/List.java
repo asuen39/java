@@ -30,8 +30,7 @@ public class List extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//	JSP読み込み	
-		String view = "/list.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list.jsp");
 		
 		dispatcher.forward(request, response);
 	}
