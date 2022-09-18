@@ -66,6 +66,10 @@ public class Login extends HttpServlet {
 	    		String loginMsg = null;
 	    		if (bean.getId() == Integer.parseInt(login_id) && login_pw.equals(bean.getPassword())) {
 	    		   loginMsg = "ログイン成功";
+	    		   
+	    		   //TOP画面へ遷移	    		   
+	    		   response.sendRedirect("./Top");
+	    		   
 	    		} else {
 	    		   loginMsg = "ログイン失敗";
 	    		}
