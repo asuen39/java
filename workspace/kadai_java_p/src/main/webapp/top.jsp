@@ -14,11 +14,11 @@
 	<script type="text/javascript" src="./js/top.js"></script>
 	<div class="global_area">
 		<div class="top_area">
-			<button name="logout" class="auto-right logout_button">logout</button>
+			<button type="button" name="logout" class="auto-right logout_button" onclick="Logout()">logout</button>
 			<form>
-				<button class="top_button" onclick="Question()">問題と答えを確認・登録する ＞</button>
-				<button class="top_button">テストをする ＞</button>
-				<button class="top_button">過去の採点結果をみる ＞</button>
+				<button type="button" class="top_button" onclick="Question()">問題と答えを確認・登録する ＞</button>
+				<button type="button" class="top_button" onclick="Test()">テストをする ＞</button>
+				<button type="button" class="top_button" onclick="PastGradeResults()">過去の採点結果をみる ＞</button>
 			</form>
 		</div>
 	</div>
