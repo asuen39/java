@@ -68,7 +68,8 @@ public class Login extends HttpServlet {
 	    		   loginMsg = "ログイン成功";
 	    		   
 	    		   //TOP画面へ遷移	    		   
-	    		   response.sendRedirect("./Top");
+	    		   response.sendRedirect("./top");
+	    		   return;
 	    		   
 	    		} else {
 	    		   loginMsg = "ログイン失敗";

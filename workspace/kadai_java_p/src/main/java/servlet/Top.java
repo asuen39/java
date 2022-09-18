@@ -39,6 +39,11 @@ public class Top extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 文字コードの指定
+	    request.setCharacterEncoding("utf-8");
+	    
+	    
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
