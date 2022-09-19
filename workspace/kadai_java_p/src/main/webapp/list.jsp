@@ -9,11 +9,13 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/style.css">
 </head>
 <body>
+<!-- JS読み込み -->
+<script type="text/javascript" src="./js/list.js"></script>
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
-				<button class="auto-right logout_button">Top</button>
-				<button class="auto-right logout_button">logout</button>
+				<button type="button" class="auto-right logout_button" onclick="Top()">Top</button>
+				<button type="button" class="auto-right logout_button" onclick="Logout()">logout</button>
 			</div>
 			<div class="center_auto">
 				<button class="logout_button">新規登録</button>
