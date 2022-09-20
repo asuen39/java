@@ -11,6 +11,12 @@
 <body>
 <!-- JS読み込み -->
 <script type="text/javascript" src="./js/list.js"></script>
+
+<!-- リクエストデータの取得 -->
+<% String idNumber = (String)request.getAttribute("idNumber"); %>
+<% String questuinList = (String)request.getAttribute("questuinList"); %>
+
+
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -22,8 +28,8 @@
 			</div>
 			<div class="main_area">
 				<ul>
-					<li class="list_area">問題:<span class="toi_number">1</span>
-						<label class="list_label">問題の1問目です。適当なところで…で端折りましょう。</label>
+					<li class="list_area">問題:<span class="toi_number"><%= idNumber %></span>
+						<label class="list_label"><%= questuinList %></label>
 						<button>編集</button>
 						<button>削除</button>
 					</li>

@@ -37,6 +37,7 @@ public class List extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list.jsp");
 		
 		dispatcher.forward(request, response);
+		
 	}
 
 	/**
@@ -50,11 +51,34 @@ public class List extends HttpServlet {
 			QuestionsDao dao = new QuestionsDao();
 	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
 	    	
-	    	System.out.println(list);
+	    	//データベースから取得されたレコードを1件ずつループする。
+	    	for (QuestionsBean bean : list) {
+	    		
+	    		//String question_list = null;
+	    		
+	    		int idNumber = bean.getId();
+	    		String questuinList = bean.getQuestion();
+	    		
+	    		System.out.println(bean.getId());
+	    		System.out.println(bean.getQuestion());
+	    		  
+	    		//リクエストデータをオブジェクトに登録	    		  
+	    		request.setAttribute("idNumber", idNumber);
+	    		request.setAttribute("questuinList", questuinList);
+	    		
+	    		return;
+	    		
+	    	}
+	    	
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
+		System.out.println("Hello World");
+		
+		//リクエストスコープへのUserオブジェクトの登録
+	    //request.setAttribute("number_id", id);
+	    
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

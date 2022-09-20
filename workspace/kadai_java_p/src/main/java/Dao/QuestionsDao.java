@@ -24,7 +24,7 @@ public class QuestionsDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT id, question FROM questions";
+			String sql = "SELECT id, question FROM questions WHERE id = ?";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			/** SQL 実行 **/
@@ -62,45 +62,44 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * 指定IDのレコードを取得する
 	 */
-//	public QuestionsBean find(int id) throws Exception {
-//		if (con == null) {
-//			setConnection();
-//		}
-//		PreparedStatement st = null;
-//		ResultSet rs = null;
-//		try {
-//			String sql = "SELECT id, question FROM questions WHERE id =";
-//			
-//			/** PreparedStatement オブジェクトの取得**/
-//			st = con.prepareStatement(sql);
-//			st.setInt(1, user_id);
-//			rs = st.executeQuery();
-//			QuestionsBean bean = new QuestionsBean();
-//			while (rs.next()) {
-//				int id = rs.getInt("id");
-//				String name = rs.getString("name");
-//				String pass = rs.getString("password");
-//				bean.setId(id);
-//				bean.setName(name);
-//				bean.setPassword(pass);
-//			}
-//			return bean;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw new Exception("レコードの取得に失敗しました");
-//		} finally {
-//			try {
-//				if (rs != null) {
-//						rs.close();
-//				}				
-//				if (st != null) {
-//						st.close();
-//				}
-//				close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw new Exception("リソースの開放に失敗しました");
-//			}
-//		}
-//	}
+	public QuestionsBean find(int id) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT id, question FROM questions WHERE id =";
+			
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			rs = st.executeQuery();
+			QuestionsBean bean = new QuestionsBean();
+			while (rs.next()) {
+				int id_question = rs.getInt("id");
+				String question = rs.getString("question");
+				bean.setId(id_question);
+				bean.setQuestion(question);
+
+			}
+			return bean;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
 }
