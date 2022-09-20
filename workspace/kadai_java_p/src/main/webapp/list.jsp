@@ -13,10 +13,9 @@
 <script type="text/javascript" src="./js/list.js"></script>
 
 <!-- リクエストデータの取得 -->
-<% String idNumber = (String)request.getAttribute("idNumber"); %>
-<% String questuinList = (String)request.getAttribute("questuinList"); %>
+<% String questionList = (String)request.getAttribute("questionList"); %>
 
-
+<%= questionList %>
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -28,8 +27,8 @@
 			</div>
 			<div class="main_area">
 				<ul>
-					<li class="list_area">問題:<span class="toi_number"><%= idNumber %></span>
-						<label class="list_label"><%= questuinList %></label>
+					<li class="list_area">問題:<span class="toi_number"></span>
+						<label class="list_label"></label>
 						<button>編集</button>
 						<button>削除</button>
 					</li>

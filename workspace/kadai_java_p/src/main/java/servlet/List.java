@@ -52,23 +52,23 @@ public class List extends HttpServlet {
 	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
 	    	
 	    	//データベースから取得されたレコードを1件ずつループする。
-	    	for (QuestionsBean bean : list) {
-	    		
-	    		//String question_list = null;
-	    		
-	    		int idNumber = bean.getId();
-	    		String questuinList = bean.getQuestion();
-	    		
-	    		System.out.println(bean.getId());
-	    		System.out.println(bean.getQuestion());
-	    		  
-	    		//リクエストデータをオブジェクトに登録	    		  
-	    		request.setAttribute("idNumber", idNumber);
-	    		request.setAttribute("questuinList", questuinList);
-	    		
-	    		return;
-	    		
-	    	}
+//	    	for (QuestionsBean bean : list) {
+//	    		
+//	    		//String question_list = null;
+//	    		
+//	    		int idNumber = bean.getId();
+//	    		String questuinList = bean.getQuestion();
+//	    		
+//	    		System.out.println(bean.getId());
+//	    		System.out.println(bean.getQuestion());
+//	    		  
+//	    		//リクエストデータをオブジェクトに登録	    		  
+//	    		request.setAttribute("idNumber", idNumber);
+//	    		request.setAttribute("questuinList", questuinList);
+//	    		
+//	    	}
+	    	System.out.println(list);
+	    	request.setAttribute("questionList", list);
 	    	
 		} catch (Exception e) {
 			e.printStackTrace();

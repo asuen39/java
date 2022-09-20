@@ -24,7 +24,7 @@ public class QuestionsDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT id, question FROM questions WHERE id = ?";
+			String sql = "SELECT id, question FROM questions";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			/** SQL 実行 **/
