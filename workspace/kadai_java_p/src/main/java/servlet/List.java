@@ -33,6 +33,43 @@ public class List extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 文字コードの指定
+	    request.setCharacterEncoding("utf-8");
+	    
+	    try {
+			QuestionsDao dao = new QuestionsDao();
+	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
+	    	
+	    	
+	    	//データベースから取得されたレコードを1件ずつループする。
+//	    	for (QuestionsBean bean : list) {
+//	    		
+//	    		//入力値とレコードの値を比較する。
+//	    		String loginMsg = null;
+//	    		
+//	    		int idNumber = bean.getId();
+//	    		String questuinList = bean.getQuestion();
+//	    		
+//	    		System.out.println(bean.getId());
+//	    		System.out.println(bean.getQuestion());
+//	    		  
+//	    		//リクエストデータをオブジェクトに登録	    		  
+//	    		request.setAttribute("idNumber", idNumber);
+//	    		//request.setAttribute("questuinList", questuinList);
+//	    		
+//	    		System.out.println(list);
+//		    	request.setAttribute("questionList", list);
+//	    	}
+	    	
+	    	System.out.println(list);
+	    	request.setAttribute("questionList", list);
+	    	
+	    	
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list.jsp");
 		
@@ -47,11 +84,11 @@ public class List extends HttpServlet {
 		// 文字コードの指定
 	    request.setCharacterEncoding("utf-8");
 	    
-		try {
-			QuestionsDao dao = new QuestionsDao();
-	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
-	    	
-	    	//データベースから取得されたレコードを1件ずつループする。
+//		try {
+//			QuestionsDao dao = new QuestionsDao();
+//	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
+//	    	
+//	    	//データベースから取得されたレコードを1件ずつループする。
 //	    	for (QuestionsBean bean : list) {
 //	    		
 //	    		//String question_list = null;
@@ -67,13 +104,13 @@ public class List extends HttpServlet {
 //	    		request.setAttribute("questuinList", questuinList);
 //	    		
 //	    	}
-	    	System.out.println(list);
-	    	request.setAttribute("questionList", list);
-	    	
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
+//	    	System.out.println(list);
+//	    	request.setAttribute("questionList", list);
+//	    	
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//
+//		}
 		System.out.println("Hello World");
 		
 		//リクエストスコープへのUserオブジェクトの登録

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Dao.QuestionsBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +15,10 @@
 <script type="text/javascript" src="./js/list.js"></script>
 
 <!-- リクエストデータの取得 -->
-<% String questionList = (String)request.getAttribute("questionList"); %>
+<% ArrayList<QuestionsBean> Questionslist = (ArrayList<QuestionsBean>) request.getAttribute("questionList"); %>
 
-<%= questionList %>
+<%= Questionslist %>
+
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
