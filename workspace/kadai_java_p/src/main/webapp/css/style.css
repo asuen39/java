@@ -14,6 +14,12 @@ ul{
 .ml10{
 	margin-left: 10%;
 }
+.ml25{
+	margin-left: 25px;
+}
+.mt10{
+	margin-top: 10px;
+}
 /*共通パーツ*/
 .logout_button{
 	width:100px;
@@ -129,10 +135,14 @@ input{
 
 .list_label{
 	display: inline-block;
-	width:75%;
+	width:520px;
 	background-color: #ededed;
 	border:1px solid #000000;
 	text-align: center;
+}
+
+.flex_start{
+	justify-content: start;
 }
 
 .flex_end{

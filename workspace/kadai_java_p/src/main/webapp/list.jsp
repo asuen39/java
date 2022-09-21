@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Dao.QuestionsBean" %>
+<%@ page import="Dao.CorrectAnswersBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +15,11 @@
 <!-- JS読み込み -->
 <script type="text/javascript" src="./js/list.js"></script>
 
-<!-- リクエストデータの取得 -->
+<!-- 問題一覧のリクエストデータの取得 -->
 <% ArrayList<QuestionsBean> Questionslist = (ArrayList<QuestionsBean>) request.getAttribute("questionList"); %>
 
-<%= Questionslist %>
+<!-- 回答データ一覧のリクエスト取得 -->
+<% ArrayList<CorrectAnswersBean> ListAnser = (ArrayList<CorrectAnswersBean>) request.getAttribute("listAnser"); %>
 
 	<div class="global_area">
 		<div class="top_area">
@@ -29,19 +31,34 @@
 				<button class="logout_button">新規登録</button>
 			</div>
 			<div class="main_area">
-				<ul>
-					<li class="list_area">問題:<span class="toi_number"></span>
-						<label class="list_label"></label>
-						<button>編集</button>
-						<button>削除</button>
-					</li>
-					<li class="list_area">答え: 1
-						<label></label>
-					</li>
-					<li class="list_area">答え: 2
-						<label></label>
-					</li>
-				</ul>
+				 <%for(int i = 0; i < Questionslist.size(); i++){%>
+				    <%QuestionsBean questionsBean = Questionslist.get(i);%>
+				    
+				    <ul>
+						<li class="list_area">問題:<span class="toi_number"><%=questionsBean.getId()%></span>
+							<label class="list_label"><%=questionsBean.getQuestion()%></label>
+							<button>編集</button>
+							<button>削除</button>
+						</li>
+						<%for(int a = 0; a < ListAnser.size(); a++){%>
+							<%CorrectAnswersBean ul_listAnser = ListAnser.get(a);%>
+							
+							
+							<%if(questionsBean.getId() == ul_listAnser.getQuestionId() ) { %>
+								<li class="list_area flex_start mt10">
+									
+									<!-- この辺りに答えの番号のカウント文を作りたい -->
+									<% for(int count = 1; count <= ul_listAnser.getQuestionId(); count++ ) {%>
+										答え: <%= count %>
+									<% } %>
+									<label class="list_label ml25"><%=ul_listAnser.getAnswer()%></label>
+								</li>
+								
+							<% } %>
+						<% } %>
+					</ul>
+				<% } %>
+			
 			</div>
 		</div>
 	</div>

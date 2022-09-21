@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dao.CorrectAnswersBean;
+import Dao.CorrectAnswersDao;
 import Dao.QuestionsBean;
 import Dao.QuestionsDao;
 
@@ -37,32 +39,19 @@ public class List extends HttpServlet {
 	    request.setCharacterEncoding("utf-8");
 	    
 	    try {
+	    	//問題一覧取得
 			QuestionsDao dao = new QuestionsDao();
 	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
 	    	
-	    	
-	    	//データベースから取得されたレコードを1件ずつループする。
-//	    	for (QuestionsBean bean : list) {
-//	    		
-//	    		//入力値とレコードの値を比較する。
-//	    		String loginMsg = null;
-//	    		
-//	    		int idNumber = bean.getId();
-//	    		String questuinList = bean.getQuestion();
-//	    		
-//	    		System.out.println(bean.getId());
-//	    		System.out.println(bean.getQuestion());
-//	    		  
-//	    		//リクエストデータをオブジェクトに登録	    		  
-//	    		request.setAttribute("idNumber", idNumber);
-//	    		//request.setAttribute("questuinList", questuinList);
-//	    		
-//	    		System.out.println(list);
-//		    	request.setAttribute("questionList", list);
-//	    	}
+	    	//回答一覧取得
+	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
+	    	ArrayList<CorrectAnswersBean> list_answer = (ArrayList<CorrectAnswersBean>) dao_answer.findAll();
 	    	
 	    	System.out.println(list);
 	    	request.setAttribute("questionList", list);
+	    	
+	    	System.out.println(list_answer);
+	    	request.setAttribute("listAnser", list_answer);
 	    	
 	    	
 		} catch (Exception e) {
@@ -83,38 +72,6 @@ public class List extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 文字コードの指定
 	    request.setCharacterEncoding("utf-8");
-	    
-//		try {
-//			QuestionsDao dao = new QuestionsDao();
-//	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
-//	    	
-//	    	//データベースから取得されたレコードを1件ずつループする。
-//	    	for (QuestionsBean bean : list) {
-//	    		
-//	    		//String question_list = null;
-//	    		
-//	    		int idNumber = bean.getId();
-//	    		String questuinList = bean.getQuestion();
-//	    		
-//	    		System.out.println(bean.getId());
-//	    		System.out.println(bean.getQuestion());
-//	    		  
-//	    		//リクエストデータをオブジェクトに登録	    		  
-//	    		request.setAttribute("idNumber", idNumber);
-//	    		request.setAttribute("questuinList", questuinList);
-//	    		
-//	    	}
-//	    	System.out.println(list);
-//	    	request.setAttribute("questionList", list);
-//	    	
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//
-//		}
-		System.out.println("Hello World");
-		
-		//リクエストスコープへのUserオブジェクトの登録
-	    //request.setAttribute("number_id", id);
 	    
 		// TODO Auto-generated method stub
 		doGet(request, response);
