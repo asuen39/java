@@ -19,7 +19,7 @@
 <% ArrayList<QuestionsBean> Questionslist = (ArrayList<QuestionsBean>) request.getAttribute("questionList"); %>
 
 <!-- 回答データ一覧のリクエスト取得 -->
-<% ArrayList<CorrectAnswersBean> ListAnser = (ArrayList<CorrectAnswersBean>) request.getAttribute("listAnser"); %>
+<% ArrayList<CorrectAnswersBean> AnswerList = (ArrayList<CorrectAnswersBean>) request.getAttribute("answerList"); %>
 
 	<div class="global_area">
 		<div class="top_area">
@@ -28,7 +28,7 @@
 				<button type="button" class="auto-right logout_button" onclick="Logout()">logout</button>
 			</div>
 			<div class="center_auto">
-				<button class="logout_button">新規登録</button>
+				<button type="button" class="logout_button" onclick="NewQuestion()">新規登録</button>
 			</div>
 			<div class="main_area">
 				 <%for(int i = 0; i < Questionslist.size(); i++){%>
@@ -40,19 +40,20 @@
 							<button>編集</button>
 							<button>削除</button>
 						</li>
-						<%for(int a = 0; a < ListAnser.size(); a++){%>
-							<%CorrectAnswersBean ul_listAnser = ListAnser.get(a);%>
+						<% int cnt = 1; %>
+						
+						<%for(int a = 0; a < AnswerList.size(); a++){%>
+							<%CorrectAnswersBean ul_AnswerList = AnswerList.get(a);%>
 							
 							
-							<%if(questionsBean.getId() == ul_listAnser.getQuestionId() ) { %>
+							<%if(questionsBean.getId() == ul_AnswerList.getQuestionId() ) { %>
 								<li class="list_area flex_start mt10">
 									
 									<!-- この辺りに答えの番号のカウント文を作りたい -->
-									<% for(int count = 1; count <= ul_listAnser.getQuestionId(); count++ ) {%>
-										答え: <%= count %>
-									<% } %>
-									<label class="list_label ml25"><%=ul_listAnser.getAnswer()%></label>
+									答え: <%= cnt %>
+									<label class="list_label ml25"><%=ul_AnswerList.getAnswer()%></label>
 								</li>
+								<% cnt++; %>
 								
 							<% } %>
 						<% } %>

@@ -44,4 +44,13 @@ public class QuestionsBean {
 	public void setUpdatedAt(Timestamp updated_at) {
 		this.updated_at = updated_at;
 	}
+	
+	//	一旦かいてだけおく
+	// 問い番号の数値等jspでカウンタ用の項目を設置しなくてもここで宣言出来る
+	// みたい。jspに調査しながら設置なので一通り作成後にこちらをやってみる。
+	// その時にはlist.jspで書いている56行目のカウンタ変数等必要無くなるかもしれない。
+	public void outputData() {
+	  System.out.println("ID:" + String.valueOf(this.id));
+	  System.out.println("問題:" + this.question);
+	}
 }

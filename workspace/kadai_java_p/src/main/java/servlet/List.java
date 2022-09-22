@@ -47,11 +47,9 @@ public class List extends HttpServlet {
 	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
 	    	ArrayList<CorrectAnswersBean> list_answer = (ArrayList<CorrectAnswersBean>) dao_answer.findAll();
 	    	
-	    	System.out.println(list);
 	    	request.setAttribute("questionList", list);
 	    	
-	    	System.out.println(list_answer);
-	    	request.setAttribute("listAnser", list_answer);
+	    	request.setAttribute("answerList", list_answer);
 	    	
 	    	
 		} catch (Exception e) {
