@@ -70,7 +70,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id =";
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ?";
 			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
