@@ -133,6 +133,15 @@ input{
 	margin: 10px 0;
 }
 
+/*delete_confirm*/
+.edit_area_answer{
+	width:100%;
+}
+
+.edit_area_answer .label_long{
+	width:100%;
+}
+
 .list_label{
 	display: inline-block;
 	width:520px;
