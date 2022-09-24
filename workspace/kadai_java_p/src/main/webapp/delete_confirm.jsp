@@ -19,8 +19,14 @@
 <!-- 削除ID取得 -->
 <% int delete_id = (int)request.getAttribute("delete_id"); %>
 
+<!-- 必要無くなるみたいだからコメントアウト -->
+<!--   ArrayList<QuestionsBean> Questionslist = (ArrayList<QuestionsBean>) request.getAttribute("questionList"); -->
+
 <!-- 問題一覧のリクエストデータの取得 -->
-<% ArrayList<QuestionsBean> Questionslist = (ArrayList<QuestionsBean>) request.getAttribute("questionList"); %>
+<% String QuestionsBean = (String)request.getAttribute("questionList"); %>
+
+<!-- テストoutputDataが未定義扱いになる -->
+<%= QuestionsBean.outputData() %>
 
 <!-- 回答データ一覧のリクエスト取得 -->
 <% ArrayList<CorrectAnswersBean> AnswerList = (ArrayList<CorrectAnswersBean>) request.getAttribute("answerList"); %>
@@ -35,6 +41,7 @@
 				<ul >
 					<%for(int i = 0; i < Questionslist.size(); i++){%>
 						<%QuestionsBean questionsBean = Questionslist.get(i);%>
+						
 						
 						<%if(questionsBean.getId() == delete_id ) { %>
 							<li class="edit_area flex_end">問題: 

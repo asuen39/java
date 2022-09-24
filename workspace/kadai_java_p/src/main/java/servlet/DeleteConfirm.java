@@ -44,7 +44,14 @@ public class DeleteConfirm extends HttpServlet {
 	    try {
 	    	//問題一覧取得
 			QuestionsDao dao = new QuestionsDao();
-	    	ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
+	    	//ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
+	    	
+			//削除のIDを問題一覧のIDと比較
+	    	QuestionsBean questionsBean = dao.find(delete_id);
+	    	
+	    	//コンソールに表示されるのは確認出来た。
+	    	questionsBean.outputData();
+	    	
 	    	
 	    	//回答一覧取得
 	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
@@ -54,7 +61,7 @@ public class DeleteConfirm extends HttpServlet {
 	    	request.setAttribute("delete_id", delete_id);
 	    	
 	    	//問題一覧設置
-	    	request.setAttribute("questionList", list);
+	    	request.setAttribute("questionList", questionsBean);
 	    	
 	    	//回答一覧設置
 	    	request.setAttribute("answerList", list_answer);
