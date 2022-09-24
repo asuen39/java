@@ -105,4 +105,50 @@ public class CorrectAnswersDao extends ConnectionDao {
 			}
 		}
 	}
+	
+	/**
+	 * questions_id
+	 */
+//	public CorrectAnswersBean find1(int questions_id) throws Exception {
+//		if (con == null) {
+//			setConnection();
+//		}
+//		PreparedStatement st = null;
+//		ResultSet rs = null;
+//		try {
+//			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ?";
+//			
+//			/** PreparedStatement オブジェクトの取得**/
+//			st = con.prepareStatement(sql);
+//			st.setInt(1, id);
+//			rs = st.executeQuery();
+//			CorrectAnswersBean bean = new CorrectAnswersBean();
+//			while (rs.next()) {
+//				int id_number = rs.getInt("id");
+//				int questions_id = rs.getInt("questions_id");
+//				String answer = rs.getString("answer");
+//				bean.setId(id_number);
+//				bean.setQuestionId(questions_id);
+//				bean.setAnswer(answer);
+//
+//			}
+//			return bean;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new Exception("レコードの取得に失敗しました");
+//		} finally {
+//			try {
+//				if (rs != null) {
+//						rs.close();
+//				}				
+//				if (st != null) {
+//						st.close();
+//				}
+//				close();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new Exception("リソースの開放に失敗しました");
+//			}
+//		}
+//	}
 }
