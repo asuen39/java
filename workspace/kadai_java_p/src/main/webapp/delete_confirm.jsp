@@ -52,7 +52,9 @@
 			</div>
 			<div class="top_box">
 				<button type="button" class="auto-right logout_button" onclick="Return()">戻る</button>
-				<button class="auto-right logout_button">削除</button>	
+				<form action="./delete" method="post">
+					<button class="auto-right logout_button" name="execute_delete" value="<%=questionsBean.getId()%>">削除</button>	
+				</form>
 			</div>
 		</div>
 	</div>

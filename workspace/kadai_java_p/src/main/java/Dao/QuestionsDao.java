@@ -102,4 +102,40 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
+	
+	/**
+	 * 指定IDのレコードを削除する
+	 */
+	public int delete(int id) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			String sql = "DELETE FROM questions WHERE id = ?";
+
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			int result = st.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
 }
