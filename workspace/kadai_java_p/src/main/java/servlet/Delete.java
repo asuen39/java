@@ -52,6 +52,7 @@ public class Delete extends HttpServlet {
 	    	
 	    	//削除実行 ※レコードの取得の失敗で実行されない。
 	    	dao.delete(execute_delete);
+	    	dao_answer.deleteAnswer(execute_delete);
 	    	
 	    	//設置
 	    	//request.setAttribute("delete", delete);
