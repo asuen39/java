@@ -118,7 +118,6 @@ public class QuestionsDao extends ConnectionDao {
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			st.setInt(1, id);
-			rs = st.executeQuery();
 			int result = st.executeUpdate();
 			return result;
 		} catch (Exception e) {
