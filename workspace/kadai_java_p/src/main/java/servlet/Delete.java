@@ -15,7 +15,7 @@ import Dao.QuestionsDao;
 /**
  * Servlet implementation class Top
  */
-@WebServlet("/delete_confirm")
+@WebServlet("/delete")
 public class Delete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,11 +47,14 @@ public class Delete extends HttpServlet {
 	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
 	    	//ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) dao_answer.findByQuetionsId(delete_id);
 	    	
-	    	//削除メソッド呼び出し
-	    	int delete = dao.delete(execute_delete);
+	    	//削除実行ボタンからの値取得出来ているか確認
+	    	System.out.println(execute_delete);
 	    	
-	    	//削除実行
-	    	request.setAttribute("delete", delete);
+	    	//削除実行 ※レコードの取得の失敗で実行されない。
+	    	dao.delete(execute_delete);
+	    	
+	    	//設置
+	    	//request.setAttribute("delete", delete);
 	    	
 	    } catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +62,7 @@ public class Delete extends HttpServlet {
 		}
 	
 		//	JSP読み込み
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/delete_confirm.jsp");
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("./list");
 		
 		dispatcher.forward(request, response);
 	}
