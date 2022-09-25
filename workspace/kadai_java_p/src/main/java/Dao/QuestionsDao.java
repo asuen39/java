@@ -102,4 +102,48 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
+	
+	/**
+	 * 指定IDのレコードを削除する
+	 */
+	public QuestionsBean delete(int id) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			String sql = "DELETE FROM questions WHERE id = ?";
+
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			rs = st.executeQuery();
+			QuestionsBean bean = new QuestionsBean();
+			while (rs.next()) {
+				int id_question = rs.getInt("id");
+				String question = rs.getString("question");
+				bean.setId(id_question);
+				bean.setQuestion(question);
+
+			}
+			return bean;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
 }
