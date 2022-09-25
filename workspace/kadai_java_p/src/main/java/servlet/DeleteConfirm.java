@@ -40,6 +40,9 @@ public class DeleteConfirm extends HttpServlet {
 	    //list 削除ボタンからの値を取得
 	    int delete_id = Integer.parseInt(request.getParameter("delete_id"));
 	    
+	    //削除実行ボタンからの値取得
+	    int execute_delete = Integer.parseInt(request.getParameter("execute_delete"));
+	    
 	    
 	    try {
 	    	//問題一覧取得
@@ -61,6 +64,16 @@ public class DeleteConfirm extends HttpServlet {
 	    	
 	    	//回答一覧設置
 	    	request.setAttribute("answerList", answerBean);
+	    	
+	    	//削除メソッド呼び出し
+	    	int delete = dao.delete(execute_delete);
+	    	
+	    	//削除実行
+	    	request.setAttribute("delete", delete);
+	    	
+//	    	if(delete == execute_delete) {
+//	    		request.setAttribute("deleteList", delete);
+//	    	}
 	    	
 	    	
 	    	

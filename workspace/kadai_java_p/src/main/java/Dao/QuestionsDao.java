@@ -106,7 +106,7 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * 指定IDのレコードを削除する
 	 */
-	public QuestionsBean delete(int id) throws Exception {
+	public int delete(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -119,15 +119,8 @@ public class QuestionsDao extends ConnectionDao {
 			st = con.prepareStatement(sql);
 			st.setInt(1, id);
 			rs = st.executeQuery();
-			QuestionsBean bean = new QuestionsBean();
-			while (rs.next()) {
-				int id_question = rs.getInt("id");
-				String question = rs.getString("question");
-				bean.setId(id_question);
-				bean.setQuestion(question);
-
-			}
-			return bean;
+			int result = st.executeUpdate();
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");
