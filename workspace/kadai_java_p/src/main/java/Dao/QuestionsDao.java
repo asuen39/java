@@ -69,8 +69,8 @@ public class QuestionsDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT id, question FROM questions WHERE id =";
-			
+			String sql = "SELECT id, question FROM questions WHERE id = ?";
+
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			st.setInt(1, id);

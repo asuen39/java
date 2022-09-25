@@ -37,8 +37,15 @@
 				    <ul>
 						<li class="list_area">問題:<span class="toi_number"><%=questionsBean.getId()%></span>
 							<label class="list_label"><%=questionsBean.getQuestion()%></label>
-							<button>編集</button>
-							<button>削除</button>
+							
+							<form action="./edit" method="post">
+								<button type="button" value="<%=questionsBean.getId()%>" >編集</button>
+							</form>
+							
+							<form action="./delete_confirm" method="post">
+								<button type="submit" name="delete_id" value="<%=questionsBean.getId()%>">削除</button>
+							</form>
+							
 						</li>
 						<% int cnt = 1; %>
 						

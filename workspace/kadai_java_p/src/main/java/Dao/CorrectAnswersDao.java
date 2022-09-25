@@ -70,7 +70,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id =";
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ?";
 			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
@@ -87,6 +87,65 @@ public class CorrectAnswersDao extends ConnectionDao {
 
 			}
 			return bean;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
+	
+	/**
+	 * questions_id
+	 */
+	//	find名の指定。ArrayListの指定もpublicの箇所で出来るみたい。
+	public ArrayList<CorrectAnswersBean> findByQuetionsId(int questions_id) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE questions_id = ?";
+			
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			//questions_idをセット			
+			st.setInt(1, questions_id);
+			
+			rs = st.executeQuery();
+			//CorrectAnswersBean bean = new CorrectAnswersBean();
+			
+			//listの指定をここで行う
+			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
+			
+			while (rs.next()) {
+				int id_number = rs.getInt("id");
+				int questions_Id = rs.getInt("questions_id");
+				String answer = rs.getString("answer");
+				
+				CorrectAnswersBean bean = new CorrectAnswersBean(id_number, questions_Id, answer);
+				
+				//	bean.setId(id_number);
+				//	bean.setQuestionId(questions_id);
+				//	bean.setAnswer(answer);
+				
+				list.add(bean);
+			}
+			
+			return list;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");
