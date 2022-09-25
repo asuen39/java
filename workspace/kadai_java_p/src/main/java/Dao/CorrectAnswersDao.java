@@ -132,17 +132,16 @@ public class CorrectAnswersDao extends ConnectionDao {
 			
 			while (rs.next()) {
 				int id_number = rs.getInt("id");
-				int questions_id1 = rs.getInt("questions_id");
+				int questions_Id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
 				
-				CorrectAnswersBean bean1 = new CorrectAnswersBean(id_number, questions_id1, answer);
+				CorrectAnswersBean bean = new CorrectAnswersBean(id_number, questions_Id, answer);
 				
-				bean1.setId(id_number);
-				bean1.setQuestionId(questions_id1);
-				bean1.setAnswer(answer);
+				//	bean.setId(id_number);
+				//	bean.setQuestionId(questions_id);
+				//	bean.setAnswer(answer);
 				
-				list.add(bean1);
-
+				list.add(bean);
 			}
 			
 			return list;

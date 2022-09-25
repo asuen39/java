@@ -44,27 +44,25 @@ public class DeleteConfirm extends HttpServlet {
 	    try {
 	    	//問題一覧取得
 			QuestionsDao dao = new QuestionsDao();
-	    	//ArrayList<QuestionsBean> list = (ArrayList<QuestionsBean>) dao.findAll();
 	    	
 			//削除のIDを問題一覧のIDと比較
 	    	QuestionsBean questionsBean = dao.find(delete_id);
 	    	
-	    	//コンソールに表示されるのは確認出来た。
-	    	questionsBean.outputData();
-	    	
-	    	
-	    	//回答一覧取得
-	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
-	    	ArrayList<CorrectAnswersBean> list_answer = (ArrayList<CorrectAnswersBean>) dao_answer.findAll();
-	    	
-	    	//削除IDをjspに送れるように設置する。
-	    	request.setAttribute("delete_id", delete_id);
+	    	//コンソールに表示するだけ。確認用
+	    	//questionsBean.outputData();
 	    	
 	    	//問題一覧設置
 	    	request.setAttribute("questionList", questionsBean);
 	    	
+	    	
+	    	//回答一覧取得
+	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
+	    	ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) dao_answer.findByQuetionsId(delete_id);
+	    	
 	    	//回答一覧設置
-	    	request.setAttribute("answerList", list_answer);
+	    	request.setAttribute("answerList", answerBean);
+	    	
+	    	
 	    	
 	    } catch (Exception e) {
 			e.printStackTrace();

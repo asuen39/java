@@ -16,20 +16,11 @@
 <script type="text/javascript" src="./js/all.js"></script>
 <script type="text/javascript" src="./js/delete_confirm.js"></script>
 
-<!-- 削除ID取得 -->
-<% int delete_id = (int)request.getAttribute("delete_id"); %>
-
-<!-- 必要無くなるみたいだからコメントアウト -->
-<!--   ArrayList<QuestionsBean> Questionslist = (ArrayList<QuestionsBean>) request.getAttribute("questionList"); -->
-
 <!-- 問題一覧のリクエストデータの取得 -->
-<% String QuestionsBean = (String)request.getAttribute("questionList"); %>
-
-<!-- テストoutputDataが未定義扱いになる -->
-<%= QuestionsBean.outputData() %>
+<%QuestionsBean questionsBean = (QuestionsBean)request.getAttribute("questionList"); %>
 
 <!-- 回答データ一覧のリクエスト取得 -->
-<% ArrayList<CorrectAnswersBean> AnswerList = (ArrayList<CorrectAnswersBean>) request.getAttribute("answerList"); %>
+<% ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) request.getAttribute("answerList"); %>
 
 	<div class="global_area">
 		<div class="top_area">
@@ -39,34 +30,24 @@
 			</div>
 			<div class="main_area">
 				<ul >
-					<%for(int i = 0; i < Questionslist.size(); i++){%>
-						<%QuestionsBean questionsBean = Questionslist.get(i);%>
-						
-						
-						<%if(questionsBean.getId() == delete_id ) { %>
-							<li class="edit_area flex_end">問題: 
-								<label class="label_textarea"><%=questionsBean.getQuestion()%></label>
-							</li>
-							<li class="edit_area flex_end">
-								<ul class="edit_area flex_end" style="width: 96%;">
-									<li class="edit_area">答え: </li>
-									<li style="width: 94%;">
-										<ul>
-										<%for(int a = 0; a < AnswerList.size(); a++){%>
-											<%CorrectAnswersBean ul_AnswerList = AnswerList.get(a);%>
-											
-											<%if(delete_id == ul_AnswerList.getQuestionId() ) { %>
-											<li class="edit_area edit_area_answer">
-												<label class="label_long"><%=ul_AnswerList.getAnswer()%></label>
-											</li>
-											<% } %>
-										<% } %>	
-										</ul>
-									</li>							
+					<li class="edit_area flex_end">問題: 
+						<label class="label_textarea"><%=questionsBean.getQuestion()%></label>
+					</li>
+					<li class="edit_area flex_end">
+						<ul class="edit_area flex_end" style="width: 96%;">
+							<li class="edit_area">答え: </li>
+							<li style="width: 94%;">
+								<ul>
+								<% for(int a = 0; a < answerBean.size(); a++){ %>
+									 <% CorrectAnswersBean ul_answerBean = answerBean.get(a); %>
+									<li class="edit_area edit_area_answer">
+										<label class="label_long"><%= ul_answerBean.getAnswer() %></label>
+									</li>
+								<% } %>
 								</ul>
-							</li>
-						<% } %>
-					<% } %>
+							</li>							
+						</ul>
+					</li>
 				</ul>
 			</div>
 			<div class="top_box">
