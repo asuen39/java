@@ -190,3 +190,8 @@ input{
 	width: 30%;
 	border: 1px solid #cccccc;
 }
+
+/*優先度高めクラス*/
+.close_area{
+	display:none;
+}

@@ -1,6 +1,8 @@
 package servlet.register;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,7 +30,37 @@ public class Confirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// 文字コードの指定
+	    request.setCharacterEncoding("utf-8");
+	    
+	    //formから値を取得
+  		String textarea_edit = request.getParameter("textarea_edit");
+  		
+
+  		String answer[] = request.getParameterValues("answer");
+  		//コンソールに結果表示		
+  	    System.out.println(textarea_edit);
+  	    //System.out.println(answer);
+  	    
+  	    request.setAttribute("textAreaEdit", textarea_edit);
+  	    
+  	    //この形式でjspに複数のnameを送ってみる。
+  	    List<String> answerall = Arrays.asList( answer );
+  	    
+  	    request.setAttribute("answerList", answerall);
+  	    
+  	    
+  	    
+  	    
+  	    //取得された答え一覧を1件ずつループ jspで表示されないからコメント
+//  	    if (answer != null){
+//  	    	for (int i = 0 ; i < answer.length ; i++){
+//  	    		System.out.println(answer[i]);
+//  	    		request.setAttribute("answerList", answer[i]);
+//  	        }
+//	    }
+	    
+	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/confirm.jsp");
 		
