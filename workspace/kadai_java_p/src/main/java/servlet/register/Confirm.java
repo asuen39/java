@@ -2,6 +2,7 @@ package servlet.register;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -35,31 +36,50 @@ public class Confirm extends HttpServlet {
 	    
 	    //formから値を取得
   		String textarea_edit = request.getParameter("textarea_edit");
+  		String[] answer = request.getParameterValues("answer");
   		
-
-  		String answer[] = request.getParameterValues("answer");
-  		//コンソールに結果表示		
-  	    System.out.println(textarea_edit);
-  	    //System.out.println(answer);
+  		//文字数チェック テキストエリア
+  		//エラーメッセージ
+  		String inputerror = null;
+  		if(textarea_edit.length() < 500) {
+  			request.setAttribute("textAreaEdit", textarea_edit);
+  		} else {
+  			inputerror = "指定の文字数より多いです";
+  			//入力画面へ遷移	    		   
+  			response.sendRedirect("/kadai_java_p/register");
+  			return;
+  			
+  			//エラーになった為コメントアウト。エラー文章をどうやっておくろうか。
+  			//String disp = "/register";
+  			//RequestDispatcher dispatch = request.getRequestDispatcher(disp);
+  			
+  			//dispatch.forward(request, response);
+  		}
   	    
-  	    request.setAttribute("textAreaEdit", textarea_edit);
   	    
-  	    //この形式でjspに複数のnameを送ってみる。
-  	    List<String> answerall = Arrays.asList( answer );
+  	    //文字数チェック 答え一覧
+  	    for (String checkAnswer : answer) {
+  	    	if(checkAnswer.length() < 200) {
+  	    		//System.out.println(checkAnswer);
+  	    		//この形式でjspに複数のnameを送ってみる。
+  	  	  	    List<String> answerall = Arrays.asList( answer );
+  	  	  	    //System.out.println(answerall);
+  	  	  	    
+  	  	  	    //nullを弾こうとしてみたが弾けない。
+  	  	  	    answerall.removeAll(Collections.singleton(null));
+  	  	  	    
+  	  	  	    //System.out.println(answerall);
+  	  	  	    
+  	  	  	    //request.setAttribute("answerList", answerall);
+  	  	  	    request.setAttribute("answerList", answerall);
+  	    	} else {
+  	    		inputerror = "指定の文字数より多いです";
+  	  			//入力画面へ遷移	    		   
+  	  			response.sendRedirect("/kadai_java_p/register");
+  	  			return;
+  	    	}
+  	    }
   	    
-  	    request.setAttribute("answerList", answerall);
-  	    
-  	    
-  	    
-  	    
-  	    //取得された答え一覧を1件ずつループ jspで表示されないからコメント
-//  	    if (answer != null){
-//  	    	for (int i = 0 ; i < answer.length ; i++){
-//  	    		System.out.println(answer[i]);
-//  	    		request.setAttribute("answerList", answer[i]);
-//  	        }
-//	    }
-	    
 	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/confirm.jsp");

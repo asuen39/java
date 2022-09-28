@@ -28,7 +28,13 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// 文字コードの指定
+	    request.setCharacterEncoding("utf-8");
+	    
+	    //formから値を取得
+  		//String textarea_edit = request.getParameter("textarea_edit");
+  		//System.out.println(textarea_edit);
+	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/register.jsp");
 		

@@ -12,6 +12,12 @@
 <script type="text/javascript" src="./js/all.js"></script>
 <script type="text/javascript" src="./js/register.js"></script>
 <body>
+	<!-- エラー文章設置したけど受け取れていない -->
+	<% String inputerror = (String)request.getAttribute("inputerror"); %>
+	
+	<% if (inputerror != null) { %>
+		<%= inputerror %>
+	<% } %> 
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">

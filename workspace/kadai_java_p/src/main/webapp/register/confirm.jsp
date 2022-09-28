@@ -12,13 +12,11 @@
 <body>
 <!-- JS読み込み -->
 <script type="text/javascript" src="/kadai_java_p/js/all.js"></script>
+<script type="text/javascript" src="/kadai_java_p/js/register/confirm.js"></script>
 
 <% String TextAreaEdit = (String)request.getAttribute("textAreaEdit"); %>
 
 <% List<String> AnswerList = (List<String>) request.getAttribute("answerList"); %>
-
-<%= AnswerList.size() %>
-
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -30,25 +28,24 @@
 					<li class="edit_area flex_end">問題: 
 						<label class="label_textarea"><%= TextAreaEdit %></label>
 					</li>
-					<!-- name一旦コメント -->
-					<!--  for( int i = 0; i < AnswerList.size(); i++ ) {%>
-						 AnswerList.get(i)%>
-					 }  -->
-					
-
-					<li class="edit_area flex_end">答え: 
-						<label class="label_long"></label>
-					</li>
 					<li class="edit_area flex_end">
-						<label class="label_long"></label>
-					</li>
-					<li class="edit_area flex_end">
-						<label class="label_long"></label>
+						<ul class="edit_area flex_end" style="width: 96%;">
+							<li class="edit_area">答え: </li>
+							<li style="width: 94%;">
+								<ul>
+								<% for( int i = 0; i < AnswerList.size(); i++ ) { %>
+									<li class="edit_area flex_end edit_area_answer">
+										<label class="label_long"><%= AnswerList.get(i) %></label>
+									</li>
+								<% } %>
+								</ul>
+							</li>							
+						</ul>
 					</li>
 				</ul>
 			</div>
 			<div class="top_box">
-				<button class="auto-right logout_button">戻る</button>
+				<button type="button" class="auto-right logout_button" onclick="Return()">戻る</button>
 				<button class="auto-right logout_button">登録</button>
 			</div>
 		</div>
