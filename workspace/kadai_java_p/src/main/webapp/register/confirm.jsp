@@ -16,7 +16,9 @@
 
 <% String TextAreaEdit = (String)request.getAttribute("textAreaEdit"); %>
 
-<% List<String> AnswerList = (List<String>) request.getAttribute("answerList"); %>
+<% String AnswerList = (String)request.getAttribute("answerList"); %>
+<%=AnswerList%>
+<%=AnswerList.length()%>
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -33,11 +35,11 @@
 							<li class="edit_area">答え: </li>
 							<li style="width: 94%;">
 								<ul>
-								<% for( int i = 0; i < AnswerList.size(); i++ ) { %>
+								
 									<li class="edit_area flex_end edit_area_answer">
-										<label class="label_long"><%= AnswerList.get(i) %></label>
+										<label class="label_long"></label>
 									</li>
-								<% } %>
+								
 								</ul>
 							</li>							
 						</ul>

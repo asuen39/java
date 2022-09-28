@@ -1,9 +1,6 @@
 package servlet.register;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,17 +58,17 @@ public class Confirm extends HttpServlet {
   	    for (String checkAnswer : answer) {
   	    	if(checkAnswer.length() < 200) {
   	    		//System.out.println(checkAnswer);
-  	    		//この形式でjspに複数のnameを送ってみる。
-  	  	  	    List<String> answerall = Arrays.asList( answer );
-  	  	  	    //System.out.println(answerall);
   	  	  	    
-  	  	  	    //nullを弾こうとしてみたが弾けない。
-  	  	  	    answerall.removeAll(Collections.singleton(null));
-  	  	  	    
-  	  	  	    //System.out.println(answerall);
+  	  	  	    String[] answerAry = new String[answer.length];
+  	  	  	    for (int i = 0; i < answer.length; i++) {
+  	  	  	    	if (answer[i] != null) {
+  	  	  	    		answerAry[i] = answer[i];
+  	  	  	    		System.out.println(answerAry[i]);
+  	  	  	    	}
+  	  	  	    	request.setAttribute("answerList", answerAry[i]);
+  	  	  	    }
   	  	  	    
   	  	  	    //request.setAttribute("answerList", answerall);
-  	  	  	    request.setAttribute("answerList", answerall);
   	    	} else {
   	    		inputerror = "指定の文字数より多いです";
   	  			//入力画面へ遷移	    		   
