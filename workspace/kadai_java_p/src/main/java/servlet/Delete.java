@@ -54,8 +54,6 @@ public class Delete extends HttpServlet {
 	    	dao.delete(execute_delete);
 	    	dao_answer.deleteAnswer(execute_delete);
 	    	
-	    	//設置
-	    	//request.setAttribute("delete", delete);
 	    	
 	    } catch (Exception e) {
 			e.printStackTrace();

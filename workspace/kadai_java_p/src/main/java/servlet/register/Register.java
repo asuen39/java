@@ -28,7 +28,29 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// 文字コードの指定
+	    request.setCharacterEncoding("utf-8");
+	    
+	    //confirmからエラー値を取得
+	    String textarea_error = "textarea_edit_error";
+	    String answer_error = "answer_error";
+  		String inputerror = request.getParameter("inputerror");
+  		
+  		if(inputerror != null) {
+  			if( inputerror.equals(textarea_error)) {
+  	  			//エラー文設定
+  	  			String error_textarea = "問題の文字数が指定より多いです";
+  	  			request.setAttribute("error_Textarea", error_textarea);
+  	  			
+  	  		} else if( inputerror.equals(answer_error)) {
+  	  			//エラー文設定
+  	  			String error_answer = "答えの文字数が指定より多いです";
+  	  			request.setAttribute("error_Answer", error_answer);
+  	  		} else {
+  	  			
+  	  		}
+  		}
+	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/register.jsp");
 		
