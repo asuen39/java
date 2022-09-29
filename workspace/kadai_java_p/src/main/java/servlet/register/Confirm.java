@@ -64,10 +64,9 @@ public class Confirm extends HttpServlet {
   	  	  	    	if (answer[i] != null) {
   	  	  	    		answerAry[i] = answer[i];
   	  	  	    		System.out.println(answerAry[i]);
+  	  	  	    		request.setAttribute("answerList", answerAry[i]);
   	  	  	    	}
-  	  	  	    	request.setAttribute("answerList", answerAry[i]);
   	  	  	    }
-  	  	  	    
   	  	  	    //request.setAttribute("answerList", answerall);
   	    	} else {
   	    		inputerror = "指定の文字数より多いです";
