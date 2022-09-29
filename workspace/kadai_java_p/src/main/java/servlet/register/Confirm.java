@@ -61,13 +61,9 @@ public class Confirm extends HttpServlet {
   	  	  	    
   	  	  	    String[] answerAry = new String[answer.length];
   	  	  	    for (int i = 0; i < answer.length; i++) {
-  	  	  	    	if (answer[i] != null) {
-  	  	  	    		answerAry[i] = answer[i];
-  	  	  	    		System.out.println(answerAry[i]);
-  	  	  	    		request.setAttribute("answerList", answerAry[i]);
-  	  	  	    	}
+  	  	  	    	answerAry[i] = answer[i];
   	  	  	    }
-  	  	  	    //request.setAttribute("answerList", answerall);
+  	  	  	    request.setAttribute("answerList", answerAry);
   	    	} else {
   	    		inputerror = "指定の文字数より多いです";
   	  			//入力画面へ遷移	    		   
@@ -75,6 +71,7 @@ public class Confirm extends HttpServlet {
   	  			return;
   	    	}
   	    }
+
   	    
 	    
 		//	JSP読み込み	
