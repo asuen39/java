@@ -17,6 +17,7 @@
 <% String TextAreaEdit = (String)request.getAttribute("textAreaEdit"); %>
 
 <% String[] AnswerList = (String[])request.getAttribute("answerList"); %>
+
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -33,14 +34,13 @@
 							<li class="edit_area">答え: </li>
 							<li style="width: 94%;">
 								<ul>
+								<!-- 配列の処理 -->
 								<%for( int i = 0; i < AnswerList.length; i++){ %>
-									<!-- nullや空文字判定 -->		
-									<% if (AnswerList[i] != null && !"".equals(AnswerList[i])) { %>
-										<li class="edit_area flex_end edit_area_answer">
-											<label class="label_long"><%= AnswerList[i] %></label>
-										</li>
-									<% } %>
-								<% } %>
+									<!-- nullや空文字の処理 -->
+							      <% if (AnswerList[i] != null && !"".equals(AnswerList[i])) { %>
+							         <li class="edit_area flex_end edit_area_answer"><label class="label_long"><%= AnswerList[i] %></label></li>
+							      <% } %>
+							    <% } %>
 								</ul>
 							</li>							
 						</ul>

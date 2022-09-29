@@ -57,13 +57,16 @@ public class Confirm extends HttpServlet {
   	    //文字数チェック 答え一覧
   	    for (String checkAnswer : answer) {
   	    	if(checkAnswer.length() < 200) {
-  	    		//System.out.println(checkAnswer);
+  	    		//nullや空文字の影響の為java側で処理をせずjspに渡す
+  	    		request.setAttribute("answerList", answer);
   	  	  	    
-  	  	  	    String[] answerAry = new String[answer.length];
-  	  	  	    for (int i = 0; i < answer.length; i++) {
-  	  	  	    	answerAry[i] = answer[i];
-  	  	  	    }
-  	  	  	    request.setAttribute("answerList", answerAry);
+  	  	  	    //String[] answerAry = new String[answer.length];
+  	  	  	    //for (int i = 0; i < answer.length; i++) {
+  	  	  	    //	if (answer[i] != null && !"".equals(answer[i])) {
+	  	  	  	//	  answerAry[i] = answer[i];
+		  	  	//    }
+  	  	  	    //}
+  	  	  	    //request.setAttribute("answerList", answerAry);
   	    	} else {
   	    		inputerror = "指定の文字数より多いです";
   	  			//入力画面へ遷移	    		   
