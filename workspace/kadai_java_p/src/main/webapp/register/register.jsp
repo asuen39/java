@@ -12,12 +12,9 @@
 <script type="text/javascript" src="./js/all.js"></script>
 <script type="text/javascript" src="./js/register.js"></script>
 <body>
-	<!-- エラー文章設置したけど受け取れていない -->
-	<% String inputerror = (String)request.getAttribute("inputerror"); %>
-	
-	<% if (inputerror != null) { %>
-		<%= inputerror %>
-	<% } %> 
+	<!-- エラー文章設置 -->
+	<% String ErrorTextArea = (String)request.getAttribute("error_Textarea"); %>
+	<% String ErrorAnswer = (String)request.getAttribute("error_Answer"); %>
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -59,6 +56,12 @@
 				</div>
 			</form>
 		</div>
+		<% if( ErrorTextArea != null ) { %>
+			<div style="color:red"><%= ErrorTextArea %></div>
+		<% } %>
+		<% if( ErrorAnswer != null ) { %>
+			<div style="color:red"><%= ErrorAnswer %></div>
+		<% } %>
 	</div>
 </body>
 </html>

@@ -41,16 +41,10 @@ public class Confirm extends HttpServlet {
   		if(textarea_edit.length() < 500) {
   			request.setAttribute("textAreaEdit", textarea_edit);
   		} else {
-  			inputerror = "指定の文字数より多いです";
+  			inputerror = "textarea_edit_error";
   			//入力画面へ遷移	    		   
-  			response.sendRedirect("/kadai_java_p/register");
+  			response.sendRedirect("/kadai_java_p/register?inputerror=" + inputerror);
   			return;
-  			
-  			//エラーになった為コメントアウト。エラー文章をどうやっておくろうか。
-  			//String disp = "/register";
-  			//RequestDispatcher dispatch = request.getRequestDispatcher(disp);
-  			
-  			//dispatch.forward(request, response);
   		}
   	    
   	    
@@ -60,6 +54,7 @@ public class Confirm extends HttpServlet {
   	    		//nullや空文字の影響の為java側で処理をせずjspに渡す
   	    		request.setAttribute("answerList", answer);
   	  	  	    
+  	    		//残しておく
   	  	  	    //String[] answerAry = new String[answer.length];
   	  	  	    //for (int i = 0; i < answer.length; i++) {
   	  	  	    //	if (answer[i] != null && !"".equals(answer[i])) {
@@ -68,9 +63,9 @@ public class Confirm extends HttpServlet {
   	  	  	    //}
   	  	  	    //request.setAttribute("answerList", answerAry);
   	    	} else {
-  	    		inputerror = "指定の文字数より多いです";
+  	    		inputerror = "answer_error";
   	  			//入力画面へ遷移	    		   
-  	  			response.sendRedirect("/kadai_java_p/register");
+  	    		response.sendRedirect("/kadai_java_p/register?inputerror=" + inputerror);
   	  			return;
   	    	}
   	    }
