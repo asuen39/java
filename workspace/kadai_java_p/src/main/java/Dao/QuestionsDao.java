@@ -143,22 +143,23 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * 指定のレコード登録する
 	 */
-	public void entry(String textarea_edit) throws Exception {
-//		if (con == null) {
-//			setConnection();
-//		}
+	public int entry(String textarea_edit) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		Timestamp current_timestamp = new Timestamp(System.currentTimeMillis());
 		try {
 			
-			String sql = "INSERT INTO questions(id, question, created_at, updated_at) VALUES (auto_increment, textarea_edit, timestamp, timestamp);";
+			String sql = "INSERT INTO questions (question, created_at, updated_at) values (?, current_timestamp(),current_timestamp());";
+			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			System.out.println(st);
 			st.setString(1, textarea_edit);
-			//int result = st.executeUpdate();
-			//return result;
+			int result = st.executeUpdate();
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");
