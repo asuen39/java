@@ -29,7 +29,7 @@
 					<ul>
 						<li class="edit_area flex_end">問題: 
 							<label class="label_textarea"><%= TextAreaEdit %></label>
-							<input type="hidden" name="textarea_edit_entry" value="<%= TextAreaEdit %>">
+							<input type="hidden" name="textarea_edit" value="<%= TextAreaEdit %>">
 						</li>
 						<li class="edit_area flex_end">
 							<ul class="edit_area flex_end" style="width: 96%;">
@@ -41,7 +41,7 @@
 										<!-- nullや空文字の処理 -->
 								      <% if (AnswerList[i] != null && !"".equals(AnswerList[i])) { %>
 								         <li class="edit_area flex_end edit_area_answer"><label class="label_long"><%= AnswerList[i] %></label></li>
-								         <input type="hidden" name="answer_entry" value="<%= AnswerList[i] %>">
+								         <input type="hidden" name="answer" value="<%= AnswerList[i] %>">
 								      <% } %>
 								    <% } %>
 									</ul>

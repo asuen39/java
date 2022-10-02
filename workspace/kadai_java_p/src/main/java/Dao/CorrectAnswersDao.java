@@ -2,6 +2,7 @@ package Dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,6 +183,44 @@ public class CorrectAnswersDao extends ConnectionDao {
 			st.setInt(1, questions_id);
 			int result = st.executeUpdate();
 			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
+	
+	/**
+	 * 指定のレコード登録する
+	 */
+	public void entryAnswer(String[] answer) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		try {
+			String sql = "INSERT INTO questions(id, question, created_at, updated_at) VALUES (auto_increment, answer, timestamp, timestamp);";
+
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			//strring[]にするとエラーになる
+			//st.setString(4, answer);
+			//int result = st.executeUpdate();
+			//return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");

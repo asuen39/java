@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dao.CorrectAnswersDao;
+import Dao.QuestionsDao;
+
 /**
  * Servlet implementation class Top
  */
@@ -35,8 +38,8 @@ public class Confirm extends HttpServlet {
   		String textarea_edit = request.getParameter("textarea_edit");
   		String[] answer = request.getParameterValues("answer");
   		
-  		System.out.println(textarea_edit);
-  		System.out.println(answer);
+  		//System.out.println(textarea_edit);
+  		//System.out.println(answer);
   		
   		//文字数チェック テキストエリア
   		//エラーメッセージ
@@ -72,12 +75,29 @@ public class Confirm extends HttpServlet {
   	    	}
   	    }
   	    
-  	    //formから値を取得 レコード登録
-  		String textarea_edit_entry = request.getParameter("textarea_edit_entry");
-  		String[] answer_entry = request.getParameterValues("answer_entry");
+  	    //formから値を取得 レコード登録	
+  		try {
+	    	//問題一覧取得
+			QuestionsDao dao = new QuestionsDao();
+	    	
+			//回答一覧取得
+	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
+	    	//ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) dao_answer.findByQuetionsId(delete_id);
+	    	
+	    	//削除実行ボタンからの値取得出来ているか確認
+	    	System.out.println(textarea_edit);		
+			System.out.println(answer);
+	    	
+	    	//登録実行 ※レコードの取得の失敗で実行されない。
+	    	dao.entry(textarea_edit);
+	    	dao_answer.entryAnswer(answer);
+	    	
+	    	
+	    } catch (Exception e) {
+			e.printStackTrace();
+
+		}
   		
-  		//登録実行 ※レコードの取得の失敗で実行されない。
-    	//dao.entry(textarea_edit_entry);
 
   	    
 	    
