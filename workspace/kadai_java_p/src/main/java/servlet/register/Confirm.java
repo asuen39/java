@@ -35,6 +35,9 @@ public class Confirm extends HttpServlet {
   		String textarea_edit = request.getParameter("textarea_edit");
   		String[] answer = request.getParameterValues("answer");
   		
+  		System.out.println(textarea_edit);
+  		System.out.println(answer);
+  		
   		//文字数チェック テキストエリア
   		//エラーメッセージ
   		String inputerror = null;
@@ -46,7 +49,6 @@ public class Confirm extends HttpServlet {
   			response.sendRedirect("/kadai_java_p/register?inputerror=" + inputerror);
   			return;
   		}
-  	    
   	    
   	    //文字数チェック 答え一覧
   	    for (String checkAnswer : answer) {
@@ -69,6 +71,13 @@ public class Confirm extends HttpServlet {
   	  			return;
   	    	}
   	    }
+  	    
+  	    //formから値を取得 レコード登録
+  		String textarea_edit_entry = request.getParameter("textarea_edit_entry");
+  		String[] answer_entry = request.getParameterValues("answer_entry");
+  		
+  		//登録実行 ※レコードの取得の失敗で実行されない。
+    	//dao.entry(textarea_edit_entry);
 
   	    
 	    

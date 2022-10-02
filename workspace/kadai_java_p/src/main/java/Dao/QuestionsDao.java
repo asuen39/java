@@ -138,4 +138,41 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
+	
+	/**
+	 * 指定のレコード登録する
+	 */
+	public void entry(String[] args) throws Exception {
+//		if (con == null) {
+//			setConnection();
+//		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			String sql = "INSERT INTO questions(id, question, created_at, updated_at) VALUES (auto_increment, '?', '?', '?');";
+
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			//エラーになる為コメント
+			//st.setInt(1, id);
+			int result = st.executeUpdate();
+			//return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
 }
