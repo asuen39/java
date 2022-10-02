@@ -2,7 +2,6 @@ package Dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,14 +148,13 @@ public class QuestionsDao extends ConnectionDao {
 		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		Timestamp current_timestamp = new Timestamp(System.currentTimeMillis());
+		//Timestamp current_timestamp = new Timestamp(System.currentTimeMillis());
 		try {
 			
-			String sql = "INSERT INTO questions (question, created_at, updated_at) values (?, current_timestamp(),current_timestamp());";
+			String sql = "INSERT INTO questions (question, created_at, updated_at) values (?, current_timestamp(),current_timestamp())";
 			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			System.out.println(st);
 			st.setString(1, textarea_edit);
 			int result = st.executeUpdate();
 			return result;
