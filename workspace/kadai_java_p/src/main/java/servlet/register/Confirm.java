@@ -85,12 +85,22 @@ public class Confirm extends HttpServlet {
 	    	//ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) dao_answer.findByQuetionsId(delete_id);
 	    	
 	    	//削除実行ボタンからの値取得出来ているか確認
-	    	System.out.println(textarea_edit);		
-			System.out.println(answer);
+	    	//System.out.println(textarea_edit);		
+			//System.out.println(answer);
 	    	
 	    	//登録実行 ※レコードの取得の失敗で実行されない。
 	    	dao.entry(textarea_edit);
-	    	dao_answer.entryAnswer(answer);
+	    	
+	    	for (String Answer : answer) {
+	    		int questions_id = Answer.length();
+	    		String answer1 = Answer;
+	    		
+	    		//System.out.println(questions_id);
+	    		
+	    		//question_idの値はどうやって出せばよいのだろうか。
+	    		dao_answer.entryAnswer(questions_id, answer1);
+	    	}
+	    	//dao_answer.entryAnswer(questions_id, answer);
 	    	
 	    	
 	    } catch (Exception e) {

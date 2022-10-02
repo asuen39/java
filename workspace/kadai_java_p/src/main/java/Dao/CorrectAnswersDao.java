@@ -204,7 +204,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	/**
 	 * 指定のレコード登録する
 	 */
-	public int entryAnswer(String[] answer) throws Exception {
+	public int entryAnswer(int questions_id, String answer1) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -217,7 +217,8 @@ public class CorrectAnswersDao extends ConnectionDao {
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			//strring[]にするとエラーになる
-			st.setString(1, answer);
+			st.setInt(2, questions_id);
+			st.setString(3, answer1);
 			int result = st.executeUpdate();
 			return result;
 		} catch (Exception e) {
@@ -238,5 +239,6 @@ public class CorrectAnswersDao extends ConnectionDao {
 			}
 		}
 	}
+
 	
 }
