@@ -217,8 +217,8 @@ public class CorrectAnswersDao extends ConnectionDao {
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			//strring[]にするとエラーになる
-			st.setInt(2, questions_id);
-			st.setString(3, answer1);
+			st.setInt(1, questions_id);
+			st.setString(2, answer1);
 			int result = st.executeUpdate();
 			return result;
 		} catch (Exception e) {

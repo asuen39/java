@@ -96,8 +96,8 @@ public class Confirm extends HttpServlet {
 	    		String answer1 = Answer;
 	    		
 	    		//System.out.println(questions_id);
-	    		
-	    		//question_idの値はどうやって出せばよいのだろうか。
+	    		System.out.println(answer1);
+	    		//answerはfor文で分けてみたがエラーになる
 	    		dao_answer.entryAnswer(questions_id, answer1);
 	    	}
 	    	//dao_answer.entryAnswer(questions_id, answer);
