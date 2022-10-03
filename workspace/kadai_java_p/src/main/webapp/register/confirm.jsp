@@ -24,7 +24,7 @@
 				<button type="button" class="auto-right logout_button" onclick="Top()">Top</button>
 				<button type="button" class="auto-right logout_button" onclick="Logout()">logout</button>
 			</div>
-			<form action="./confirm" method="post" class="top_area" style="width:100%;">
+			<form action="./entry" method="post" class="top_area" style="width:100%;">
 				<div class="main_area">
 					<ul>
 						<li class="edit_area flex_end">問題: 
