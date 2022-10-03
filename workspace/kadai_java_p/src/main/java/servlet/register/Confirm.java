@@ -71,22 +71,32 @@ public class Confirm extends HttpServlet {
   	  			return;
   	    	}
   	    }
-  	    
-  	    //エラー取得予定
-  	    String error_id = request.getParameter("error_id");
+
   	    //エラー文章
-  	    String error_m = null;
+  	    String errorMsgTextarea = null;
+  	    String errorMsgAnswer = null;
   	    
-  	    //コンソールに結果表示		
-	    System.out.println(error_id);
+  	    //文字数未入力 問題エラーチェック
+  	    if (textarea_edit == null || "".equals(textarea_edit)) {
+  	    	errorMsgTextarea = "問題が未入力です。";
+  		   
+  		   //問題のエラーをjspに渡す。
+  	  	   request.setAttribute("errorMsgTextarea", errorMsgTextarea);
+  		}
   	    
-  	    //エラーチェック
-  	    if( error_id != null ) {
-  	    	error_m = "エラーが発生しました";
-  	    }
-  	    
-  	    //エラーをjspに渡す。
-  	    request.setAttribute("error_M", error_m);
+  	    //文字数未入力 答えエラーチェック 
+  	    //※入力画面から渡されてくる答えの配列に空文字の0が必ずある為エラーが作動してしまう
+	  	for( int i = 0; i < answer.length; i++){ 
+	  		if (answer[i] != null && !"".equals(answer[i])) {
+	  			
+	  		} else {
+	  			System.out.println(answer[i].length());
+	  			errorMsgAnswer = "答えが未入力です。";
+	  			
+	  			//答えのエラーをjspに渡す。
+	  			request.setAttribute("errorMsgAnswer", errorMsgAnswer);
+	  		}
+	  	}
   	    
 	    
 		//	JSP読み込み	
