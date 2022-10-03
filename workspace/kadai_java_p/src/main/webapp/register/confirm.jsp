@@ -18,6 +18,8 @@
 
 <% String[] AnswerList = (String[])request.getAttribute("answerList"); %>
 
+<% String errorMessage = (String)request.getAttribute("error_M"); %>
+
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -52,7 +54,10 @@
 				</div>
 				<div class="top_box">
 					<button type="button" class="auto-right logout_button" onclick="Return()">戻る</button>
-					<button type="submit" class="auto-right logout_button">登録</button>
+					<!-- エラーメッセージが確認された場合、登録ボタンを隠す -->
+					<% if(errorMessage == null) { %>
+						<button type="submit" class="auto-right logout_button">登録</button>
+					<% } %>
 				</div>
 			</form>
 		</div>

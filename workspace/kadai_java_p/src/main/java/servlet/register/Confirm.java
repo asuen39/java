@@ -72,6 +72,12 @@ public class Confirm extends HttpServlet {
   	    	}
   	    }
   	    
+  	    //エラー
+  	    String error_m = null;
+  	    
+  	    //エラーをjspに渡す。
+  	    request.setAttribute("error_M", error_m);
+  	    
 	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/confirm.jsp");
