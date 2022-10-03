@@ -106,7 +106,7 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * 指定IDのレコードを削除する
 	 */
-	public int delete(int id) throws Exception {
+	public void delete(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -118,8 +118,7 @@ public class QuestionsDao extends ConnectionDao {
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			st.setInt(1, id);
-			int result = st.executeUpdate();
-			return result;
+			st.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");

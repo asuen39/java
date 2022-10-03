@@ -121,7 +121,8 @@ public class CorrectAnswersDao extends ConnectionDao {
 			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			//questions_idをセット			
+			//questions_idをセット
+			//1番目の？を置き換える。
 			st.setInt(1, questions_id);
 			
 			rs = st.executeQuery();
@@ -168,7 +169,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	/**
 	 * 指定questions_idのレコードを削除する
 	 */
-	public int deleteAnswer(int questions_id) throws Exception {
+	public void deleteAnswer(int questions_id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -180,8 +181,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			st.setInt(1, questions_id);
-			int result = st.executeUpdate();
-			return result;
+			st.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");
@@ -216,7 +216,6 @@ public class CorrectAnswersDao extends ConnectionDao {
 
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			//strring[]にするとエラーになる
 			st.setInt(1, questions_id);
 			st.setString(2, answer1);
 			int result = st.executeUpdate();

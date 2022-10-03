@@ -40,7 +40,6 @@ public class DeleteConfirm extends HttpServlet {
 	    //list 削除ボタンからの値を取得
 	    int delete_id = Integer.parseInt(request.getParameter("delete_id"));
 	    
-	    
 	    try {
 	    	//問題一覧取得
 			QuestionsDao dao = new QuestionsDao();

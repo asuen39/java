@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +47,7 @@ public class Delete extends HttpServlet {
 	    	//ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) dao_answer.findByQuetionsId(delete_id);
 	    	
 	    	//削除実行ボタンからの値取得出来ているか確認
-	    	System.out.println(execute_delete);
+	    	//System.out.println(execute_delete);
 	    	
 	    	//削除実行 ※レコードの取得の失敗で実行されない。
 	    	dao.delete(execute_delete);
@@ -61,9 +60,8 @@ public class Delete extends HttpServlet {
 		}
 	
 		//	JSP読み込み
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("./list");
-		
-		dispatcher.forward(request, response);
+	    response.sendRedirect("./list");
+	   
 	}
 
 	/**

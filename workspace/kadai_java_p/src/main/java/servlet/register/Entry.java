@@ -2,7 +2,6 @@ package servlet.register;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,9 +36,6 @@ public class Entry extends HttpServlet {
 	    //formから値を取得
   		String textarea_edit = request.getParameter("textarea_edit");
   		String[] answer = request.getParameterValues("answer");
-  		
-  		//System.out.println(textarea_edit);
-  		//System.out.println(answer);
   	    
   	    //formから値を取得 レコード登録	
   		try {
@@ -49,20 +45,16 @@ public class Entry extends HttpServlet {
 			//回答一覧取得
 	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
 	    	
-	    	//削除実行ボタンからの値取得出来ているか確認
-	    	//System.out.println(textarea_edit);		
-			//System.out.println(answer);
-	    	
-	    	//登録実行 ※レコードの取得の失敗で実行されない。
+	    	//登録実行 textarea_editを登録する。
 	    	dao.entry(textarea_edit);
 	    	
+	    	//QuestionsDao.javaから抽出したtextarea_editを宣言した変数に代入。
 	    	int questions_id = dao.getQuestionId();
 	    	
 	    	for (String Answer : answer) {
 	    		String answer1 = Answer;
 	    		
-	    		//System.out.println(questions_id);
-	    		System.out.println(answer1);
+	    		//抽出したtextarea_editのIDと分割したanswerの答え一覧を登録実行させる
 	    		dao_answer.entryAnswer(questions_id, answer1);
 	    	}
 	    	
@@ -71,12 +63,10 @@ public class Entry extends HttpServlet {
 			e.printStackTrace();
 
 		}
-  	    
 	    
 		//	JSP読み込み	
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/list");
+		response.sendRedirect("../list");
 		
-		dispatcher.forward(request, response);
 	}
 
 	/**
