@@ -72,8 +72,18 @@ public class Confirm extends HttpServlet {
   	    	}
   	    }
   	    
-  	    //エラー
+  	    //エラー取得予定
+  	    String error_id = request.getParameter("error_id");
+  	    //エラー文章
   	    String error_m = null;
+  	    
+  	    //コンソールに結果表示		
+	    System.out.println(error_id);
+  	    
+  	    //エラーチェック
+  	    if( error_id != null ) {
+  	    	error_m = "エラーが発生しました";
+  	    }
   	    
   	    //エラーをjspに渡す。
   	    request.setAttribute("error_M", error_m);
