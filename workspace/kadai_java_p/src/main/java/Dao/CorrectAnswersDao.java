@@ -212,7 +212,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "INSERT INTO questions (questions_id, answer, created_at, updated_at) values (?, ?, current_timestamp(),current_timestamp())";
+			String sql = "INSERT INTO correct_answers (questions_id, answer, created_at, updated_at) values (?, ?, current_timestamp(),current_timestamp())";
 
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
