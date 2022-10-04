@@ -84,13 +84,10 @@ public class Confirm extends HttpServlet {
   	  	   request.setAttribute("errorMsgTextarea", errorMsgTextarea);
   		}
   	    
-  	    //文字数未入力 答えエラーチェック 
-  	    //※入力画面から渡されてくる答えの配列に空文字の0が必ずある為エラーが作動してしまう
+  	    //文字数未入力 答えエラーチェック
 	  	for( int i = 0; i < answer.length; i++){ 
-	  		if (answer[i] != null && !"".equals(answer[i])) {
-	  			
-	  		} else {
-	  			System.out.println(answer[i].length());
+	  		if (answer[i] != null && "".equals(answer[i])) {
+	  			//System.out.println(answer[i].length());
 	  			errorMsgAnswer = "答えが未入力です。";
 	  			
 	  			//答えのエラーをjspに渡す。

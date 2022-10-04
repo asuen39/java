@@ -22,8 +22,6 @@
 
 <% String ErrorMsgAnswer = (String)request.getAttribute("errorMsgAnswer"); %>
 
-<%=ErrorMsgAnswer  %>
-
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
