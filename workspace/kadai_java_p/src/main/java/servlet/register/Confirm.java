@@ -88,7 +88,7 @@ public class Confirm extends HttpServlet {
   	    //文字数未入力 答えエラーチェック
 	  	for( int i = 0; i < answer.length; i++){
 	  		//答え欄3つあるが1つだけ入力された状態等の空きinputが送られてくる場合、
-	  		//空きinputをここで排除する。全部空きinputだったらエラーの分岐にいく。
+	  		//空きinputをここで排除する。全部空きinputだったらfor文から抜けてエラー文が実行される。
 	  		if(answer[i] != "") {
 	  			//System.out.println(answer[i]);
 	  			
