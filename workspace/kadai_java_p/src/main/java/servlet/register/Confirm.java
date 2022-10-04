@@ -53,7 +53,7 @@ public class Confirm extends HttpServlet {
   	    //文字数チェック 答え一覧
   	    for (String checkAnswer : answer) {
   	    	if(checkAnswer.length() < 200) {
-  	    		//nullや空文字の影響の為java側で処理をせずjspに渡す
+  	    		//nullや空文字の影響の為java側で処理をせずパラメータとして設置する。jspで読む込む処理を設置する。
   	    		request.setAttribute("answerList", answer);
   	  	  	    
   	    		//残しておく
@@ -72,7 +72,7 @@ public class Confirm extends HttpServlet {
   	    	}
   	    }
 
-  	    //エラー文章
+  	    //エラー文章 宣言。
   	    String errorMsgTextarea = null;
   	    String errorMsgAnswer = null;
   	    
@@ -80,7 +80,7 @@ public class Confirm extends HttpServlet {
   	    if (textarea_edit == null || "".equals(textarea_edit)) {
   	    	errorMsgTextarea = "問題が未入力です。";
   		   
-  		   //問題のエラーをjspに渡す。
+  		   //問題のエラーのパラメータを設置する。jspで読み込む処理を設定する。
   	  	   request.setAttribute("errorMsgTextarea", errorMsgTextarea);
   		}
   	    
@@ -90,7 +90,7 @@ public class Confirm extends HttpServlet {
 	  		//答え欄3つあるが1つだけ入力された状態等の空きinputが送られてくる場合、
 	  		//空きinputをここで排除する。全部空きinputだったらfor文から抜けてエラー文が実行される。
 	  		//equalsの判定にする事で文字の判定に抜けが無いようにする。
-	  		if(answer[i].equals("")) {
+	  		if(!answer[i].equals("")) {
 	  			System.out.println(answer[i]);
 	  			
 	  			//答えが入力を確認出来たら実行する。
@@ -105,7 +105,7 @@ public class Confirm extends HttpServlet {
 	  	//答えエラーチェックで文字入力が確認されていればjspに移動させる為こちらが実行される事はない。
 	  	errorMsgAnswer = "答えが未入力です。";
 	  	
-	  	//答えのエラーをjspに渡す。
+	  	//答えのエラーをパラメータを設置する。
 	  	request.setAttribute("errorMsgAnswer", errorMsgAnswer);
 	    
 		//	JSP読み込み	
