@@ -84,17 +84,28 @@ public class Confirm extends HttpServlet {
   	  	   request.setAttribute("errorMsgTextarea", errorMsgTextarea);
   		}
   	    
+  	    
   	    //文字数未入力 答えエラーチェック
-	  	for( int i = 0; i < answer.length; i++){ 
-	  		if (answer[i] != null && "".equals(answer[i])) {
-	  			//System.out.println(answer[i].length());
-	  			errorMsgAnswer = "答えが未入力です。";
+	  	for( int i = 0; i < answer.length; i++){
+	  		//答え欄3つあるが1つだけ入力された状態等の空きinputが送られてくる場合、
+	  		//空きinputをここで排除する。全部空きinputだったらエラーの分岐にいく。
+	  		if(answer[i] != "") {
+	  			//System.out.println(answer[i]);
 	  			
-	  			//答えのエラーをjspに渡す。
-	  			request.setAttribute("errorMsgAnswer", errorMsgAnswer);
+	  			//答えが入力を確認出来たら実行する。
+	  			RequestDispatcher dispatcher = request.getRequestDispatcher("/register/confirm.jsp");
+	  			dispatcher.forward(request, response);
+	  			//答えが入力を確認出来たらretunで止める。
+	  			return;
 	  		}
 	  	}
-  	    
+	  	
+	  	//答えのfor文から未入力の値が来た場合に実行する。
+	  	//答えエラーチェックで文字入力が確認されていればjspに移動させる為こちらが実行される事はない。
+	  	errorMsgAnswer = "答えが未入力です。";
+	  	
+	  	//答えのエラーをjspに渡す。
+	  	request.setAttribute("errorMsgAnswer", errorMsgAnswer);
 	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/register/confirm.jsp");
