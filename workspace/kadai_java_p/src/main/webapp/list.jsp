@@ -39,7 +39,7 @@
 							<label class="list_label"><%=questionsBean.getQuestion()%></label>
 							
 							<form action="./edit" method="post">
-								<button type="button" value="<%=questionsBean.getId()%>" >編集</button>
+								<button type="submit" name="edit_id" value="<%=questionsBean.getId()%>" >編集</button>
 							</form>
 							
 							<form action="./delete_confirm" method="post">

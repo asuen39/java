@@ -64,7 +64,7 @@ public class Entry extends HttpServlet {
 
 		}
 	    
-		//	JSP読み込み	
+		//	listサーブレットを読み込み	
 		response.sendRedirect("../list");
 		
 	}
