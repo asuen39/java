@@ -106,7 +106,7 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * 指定IDのレコードを削除する
 	 */
-	public int delete(int id) throws Exception {
+	public void delete(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -118,8 +118,90 @@ public class QuestionsDao extends ConnectionDao {
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			st.setInt(1, id);
-			int result = st.executeUpdate();
-			return result;
+			st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
+	
+	/**
+	 * 指定のレコード登録する
+	 */
+	public void entry(String textarea_edit) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "INSERT INTO questions (question, created_at, updated_at) values (?, current_timestamp(),current_timestamp())";
+			
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			st.setString(1, textarea_edit);
+			st.executeUpdate();
+			//return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("レコードの取得に失敗しました");
+		} finally {
+			try {
+				if (rs != null) {
+						rs.close();
+				}				
+				if (st != null) {
+						st.close();
+				}
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("リソースの開放に失敗しました");
+			}
+		}
+	}
+	
+	/**
+	 * 問題のidの抽出
+	 * 新規登録の処理に値を渡す。
+	 */
+	public int getQuestionId() throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "SELECT MAX(id) as id From questions";
+			
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(sql);
+			rs = st.executeQuery();
+			
+			int id = 0;
+			
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+			
+			return id;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("レコードの取得に失敗しました");

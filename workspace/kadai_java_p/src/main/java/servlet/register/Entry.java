@@ -1,4 +1,4 @@
-package servlet;
+package servlet.register;
 
 import java.io.IOException;
 
@@ -14,14 +14,14 @@ import Dao.QuestionsDao;
 /**
  * Servlet implementation class Top
  */
-@WebServlet("/delete")
-public class Delete extends HttpServlet {
+@WebServlet("/register/entry")
+public class Entry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Delete() {
+    public Entry() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,44 +33,46 @@ public class Delete extends HttpServlet {
 		// 文字コードの指定
 	    request.setCharacterEncoding("utf-8");
 	    
-	    
-	    //削除実行ボタンからの値取得
-	    int execute_delete = Integer.parseInt(request.getParameter("execute_delete"));
-	    
-	    
-	    try {
+	    //formから値を取得
+  		String textarea_edit = request.getParameter("textarea_edit");
+  		String[] answer = request.getParameterValues("answer");
+  	    
+  	    //formから値を取得 レコード登録	
+  		try {
 	    	//問題一覧取得
 			QuestionsDao dao = new QuestionsDao();
 	    	
 			//回答一覧取得
 	    	CorrectAnswersDao dao_answer = new CorrectAnswersDao();
-	    	//ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) dao_answer.findByQuetionsId(delete_id);
 	    	
-	    	//削除実行ボタンからの値取得出来ているか確認
-	    	//System.out.println(execute_delete);
+	    	//登録実行 textarea_editを登録する。
+	    	dao.entry(textarea_edit);
 	    	
-	    	//削除実行 ※レコードの取得の失敗で実行されない。
-	    	dao.delete(execute_delete);
-	    	dao_answer.deleteAnswer(execute_delete);
+	    	//QuestionsDao.javaから抽出したtextarea_editを宣言した変数に代入。
+	    	int questions_id = dao.getQuestionId();
+	    	
+	    	for (String Answer : answer) {
+	    		String answer1 = Answer;
+	    		
+	    		//抽出したtextarea_editのIDと分割したanswerの答え一覧を登録実行させる
+	    		dao_answer.entryAnswer(questions_id, answer1);
+	    	}
 	    	
 	    	
 	    } catch (Exception e) {
 			e.printStackTrace();
 
 		}
-	
-		//	JSP読み込み
-	    response.sendRedirect("./list");
-	   
+	    
+		//	JSP読み込み	
+		response.sendRedirect("../list");
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		// 文字コードの指定
-	    request.setCharacterEncoding("utf-8");
-	    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

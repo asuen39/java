@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function(){
 	function AdditionClick(){
 		//list要素を子要素ごとコピー
 		var close_area = document.querySelector('.addition_content').cloneNode(true);
+		
+		//inputの入力内容を削除
+		close_area.children[1].value = "";
+		
 		//ul要素の最後に追加
 		parent.appendChild(close_area);
 	}

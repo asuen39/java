@@ -42,19 +42,20 @@
 						</li>
 					</ul>
 				</div>
-				<ul class="close_area">
-					<li class="edit_area flex_end addition_content">
-						<span style="width:40px;"></span>
-						<input type="text" name="answer" style="width: 84%;">
-						<button type="button" onclick="delete_btn(this)">削除</button>
-					</li>
-				</ul>
 				<div class="top_box">
 					<button type="button" class="auto-right logout_button" onclick="Return()">戻る</button>
 					<button type="submit" class="auto-right logout_button">確認</button>
 					<button type="button" id="addition_btn" class="auto-right logout_button">追加</button>
 				</div>
 			</form>
+			<!-- form内にあると無記入の値が送られてしまうのでform外に設置 -->
+			<ul class="close_area">
+				<li class="edit_area flex_end addition_content">
+					<span style="width:40px;"></span>
+					<input type="text" name="answer" style="width: 84%;">
+					<button type="button" onclick="delete_btn(this)">削除</button>
+				</li>
+			</ul>
 		</div>
 		<% if( ErrorTextArea != null ) { %>
 			<div style="color:red"><%= ErrorTextArea %></div>
