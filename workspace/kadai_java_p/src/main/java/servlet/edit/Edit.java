@@ -39,7 +39,7 @@ public class Edit extends HttpServlet {
 	    
 	    //list 削除ボタンからの値を取得
 	    int edit_id = Integer.parseInt(request.getParameter("edit_id"));
-	    //System.out.println(edit_id);
+	    System.out.println(edit_id);
 	    
 	    //問題番号のIDを設置。
 	    request.setAttribute("editId", edit_id);
@@ -68,6 +68,28 @@ public class Edit extends HttpServlet {
 
 		}
 	    
+	    //confirmからエラー値を取得
+	    String textarea_error = "textarea_update_error";
+	    String answer_error = "answer_update_error";
+  		String inputerror = request.getParameter("inputerror");
+  		
+  		System.out.println(textarea_error);
+  		System.out.println(inputerror);
+  		
+  		if(inputerror != null) {
+  			if( inputerror.equals(textarea_error)) {
+  	  			//エラー文設定
+  	  			String error_textarea = "問題の文字数が指定より多いです";
+  	  			request.setAttribute("error_Textarea", error_textarea);
+  	  			
+  	  		} else if( inputerror.equals(answer_error)) {
+  	  			//エラー文設定
+  	  			String error_answer = "答えの文字数が指定より多いです";
+  	  			request.setAttribute("error_Answer", error_answer);
+  	  		} else {
+  	  			
+  	  		}
+  		}
 	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit/edit.jsp");

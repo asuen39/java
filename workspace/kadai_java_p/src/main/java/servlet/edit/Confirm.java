@@ -28,7 +28,41 @@ public class Confirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// 文字コードの指定
+	    request.setCharacterEncoding("utf-8");
+	    
+	    // edit/edit.jspからのform値を取得
+	    String edit_id = request.getParameter("edit_id");
+  		String textarea_update = request.getParameter("textarea_update");
+  		String[] answer_update = request.getParameterValues("answer_update");
+  		
+  		System.out.println(edit_id);
+  		
+  		//文字数チェック テキストエリア
+  		//エラーメッセージ
+  		String inputerror = null;
+  		if(textarea_update.length() < 5) {
+  			request.setAttribute("textAreaUpdate", textarea_update);
+  		} else {
+  			inputerror = "textarea_update_error";
+  			//入力画面へ遷移 ※edit_idも送らないと500エラーになる為おくる。    		   
+  			response.sendRedirect("/kadai_java_p/edit?edit_id=" + edit_id + "inputerror=" + inputerror);
+  			return;
+  		}
+  		
+  		//文字数チェック 答え一覧
+  	    for (String checkAnswer : answer_update) {
+  	    	if(checkAnswer.length() < 200) {
+  	    		//nullや空文字の影響の為java側で処理をせずパラメータとして設置する。jspで読む込む処理を設置する。
+  	    		request.setAttribute("answerList", answer_update);
+  	    	} else {
+  	    		inputerror = "answer_update_error";
+  	  			//入力画面へ遷移	    		   
+  	    		response.sendRedirect("/kadai_java_p/register?edit_id=" + edit_id + "inputerror=" + inputerror);
+  	  			return;
+  	    	}
+  	    }
+	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit/confirm.jsp");
 		

@@ -41,7 +41,7 @@ public class Confirm extends HttpServlet {
   		//文字数チェック テキストエリア
   		//エラーメッセージ
   		String inputerror = null;
-  		if(textarea_edit.length() < 500) {
+  		if(textarea_edit.length() < 5) {
   			request.setAttribute("textAreaEdit", textarea_edit);
   		} else {
   			inputerror = "textarea_edit_error";

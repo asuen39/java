@@ -22,6 +22,9 @@
 
 <!-- 回答データ一覧のリクエスト取得 -->
 <% ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) request.getAttribute("answerList"); %>
+
+<!-- エラー文章リクエスト -->
+
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -32,8 +35,9 @@
 				<div class="main_area">
 					<ul>
 						<li class="edit_area">問題番号:<span class="toi_number"><%= EditId %></span></li>
+						<input type="hidden" name="edit_id" value="<%= EditId %>">
 						<li class="edit_area">問題: 
-							<textarea name="textarea_edit" rows="6" cols="85"><%=questionsBean.getQuestion()%></textarea>
+							<textarea name="textarea_update" rows="6" cols="85"><%=questionsBean.getQuestion()%></textarea>
 						</li>
 						<li class="edit_area">
 							<ul class="edit_area" style="width: 100%;">
@@ -43,7 +47,7 @@
 									<% for(int a = 0; a < answerBean.size(); a++){ %>
 										 <% CorrectAnswersBean ul_answerBean = answerBean.get(a); %>
 										<li class="edit_area">
-											<input type="text" name="edit_answer" style="width: 92%;" value="<%= ul_answerBean.getAnswer() %>">
+											<input type="text" name="answer_update" style="width: 92%;" value="<%= ul_answerBean.getAnswer() %>">
 											<button type="button" onclick="delete_btn(this)">削除</button>
 										</li>
 									<% } %>
@@ -61,7 +65,7 @@
 			</form>
 			<ul class="close_area">
 				<li class="edit_area addition_content">
-					<input type="text" name="edit_answer" style="width: 92%;">
+					<input type="text" name="answer_update" style="width: 92%;">
 					<button type="button" onclick="delete_btn(this)">削除</button>
 				</li>
 			</ul>
