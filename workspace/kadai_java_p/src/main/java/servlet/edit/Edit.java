@@ -29,7 +29,7 @@ public class Edit extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -37,18 +37,21 @@ public class Edit extends HttpServlet {
 		// 文字コードの指定
 	    request.setCharacterEncoding("utf-8");
 	    
+	    
 	    //list 削除ボタンからの値を取得
 	    int edit_id = Integer.parseInt(request.getParameter("edit_id"));
-	    System.out.println(edit_id);
-	    
-	    //問題番号のIDを設置。
-	    request.setAttribute("editId", edit_id);
-	    
+	    //System.out.println(edit_id);
 	    try {
+	    	//ID取得させてる関係で他のページのような扱いをすると500エラーになる。
+	    	//常に問題の番号を保持させないといけない。
+	    	
+	    	//問題番号のIDを設置。
+	    	request.setAttribute("editId", edit_id);
+	    	
 	    	//問題一覧取得
-			QuestionsDao dao = new QuestionsDao();
-		    
-		    //削除のIDを問題一覧のIDと比較
+	    	QuestionsDao dao = new QuestionsDao();
+	    	
+	    	//削除のIDを問題一覧のIDと比較
 	    	QuestionsBean questionsBean = dao.find(edit_id);
 	    	
 	    	//問題一覧設置
@@ -65,31 +68,26 @@ public class Edit extends HttpServlet {
 	    	
 	    } catch (Exception e) {
 			e.printStackTrace();
-
 		}
 	    
 	    //confirmからエラー値を取得
 	    String textarea_error = "textarea_update_error";
 	    String answer_error = "answer_update_error";
-  		String inputerror = request.getParameter("inputerror");
-  		
-  		System.out.println(textarea_error);
-  		System.out.println(inputerror);
-  		
-  		if(inputerror != null) {
-  			if( inputerror.equals(textarea_error)) {
-  	  			//エラー文設定
-  	  			String error_textarea = "問題の文字数が指定より多いです";
-  	  			request.setAttribute("error_Textarea", error_textarea);
-  	  			
-  	  		} else if( inputerror.equals(answer_error)) {
-  	  			//エラー文設定
-  	  			String error_answer = "答えの文字数が指定より多いです";
-  	  			request.setAttribute("error_Answer", error_answer);
-  	  		} else {
-  	  			
-  	  		}
-  		}
+	    String inputerror = request.getParameter("inputerror");
+	    if(inputerror != null) {
+			if( inputerror.equals(textarea_error)) {
+				//エラー文設定
+				String error_textarea = "問題の文字数が指定より多いです";
+				request.setAttribute("error_Textarea", error_textarea);
+				
+			} else if( inputerror.equals(answer_error)) {
+				//エラー文設定
+				String error_answer = "答えの文字数が指定より多いです";
+				request.setAttribute("error_Answer", error_answer);
+			} else {
+				
+			}
+		}
 	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit/edit.jsp");

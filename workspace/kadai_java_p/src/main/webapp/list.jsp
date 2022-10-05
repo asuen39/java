@@ -38,7 +38,7 @@
 						<li class="list_area">問題:<span class="toi_number"><%=questionsBean.getId()%></span>
 							<label class="list_label"><%=questionsBean.getQuestion()%></label>
 							
-							<form action="./edit" method="post">
+							<form action="./edit?edit_id=<%=questionsBean.getId()%>" method="post">
 								<button type="submit" name="edit_id" value="<%=questionsBean.getId()%>" >編集</button>
 							</form>
 							

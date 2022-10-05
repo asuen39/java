@@ -17,6 +17,7 @@
 <script type="text/javascript" src="./js/edit.js"></script>
 <!-- 問題番号のIDをリクエスト -->
 <% int EditId = (int)request.getAttribute("editId"); %>
+
 <!-- 問題一覧のリクエストデータの取得 -->
 <%QuestionsBean questionsBean = (QuestionsBean)request.getAttribute("questionList"); %>
 
@@ -24,7 +25,8 @@
 <% ArrayList<CorrectAnswersBean> answerBean = (ArrayList<CorrectAnswersBean>) request.getAttribute("answerList"); %>
 
 <!-- エラー文章リクエスト -->
-
+<% String ErrorTextArea = (String)request.getAttribute("error_Textarea"); %>
+<% String ErrorAnswer = (String)request.getAttribute("error_Answer"); %>
 	<div class="global_area">
 		<div class="top_area">
 			<div class="top_box">
@@ -70,6 +72,12 @@
 				</li>
 			</ul>
 		</div>
+		<% if( ErrorTextArea != null ) { %>
+			<div style="color:red"><%= ErrorTextArea %></div>
+		<% } %>
+		<% if( ErrorAnswer != null ) { %>
+			<div style="color:red"><%= ErrorAnswer %></div>
+		<% } %>
 	</div>
 </body>
 </html>
