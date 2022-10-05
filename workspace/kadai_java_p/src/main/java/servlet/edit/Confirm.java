@@ -36,6 +36,9 @@ public class Confirm extends HttpServlet {
 	    String textarea_update = request.getParameter("textarea_update");
 		String[] answer_update = request.getParameterValues("answer_update");
 		
+		//問題番号のidを設置する。
+		request.setAttribute("editId", edit_id);
+		
 		//文字数チェック テキストエリア
 		//エラーメッセージ
 		String inputerror = null;
@@ -61,6 +64,7 @@ public class Confirm extends HttpServlet {
 				return;
 			}
 		}
+		
 	    
 		//	JSP読み込み	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit/confirm.jsp");
